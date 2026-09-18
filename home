@@ -1,0 +1,3772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himalayan Heritage | Thakali Restaurant</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+    --maroon:#350b0b;
+    --deep:#170707;
+    --red:#791d1d;
+    --gold:#d0a44c;
+    --gold2:#f0ce78;
+    --cream:#f5ead4;
+    --paper:#fff9ed;
+    --blue:#193b4d;
+    --green:#245b45;
+    --text:#211712;
+    --muted:#806f60;
+    --white:#fffaf1;
+    --glass:rgba(255,250,241,.075);
+    --border:rgba(240,206,120,.22);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--deep);
+    color:var(--white);
+    overflow-x:hidden;
+}
+
+body.day-mode{
+    background:#f5ead4;
+    color:var(--text);
+}
+
+body.night-mode{
+    background:#080303;
+}
+
+h1,h2,h3,h4{
+    font-family:"Noto Serif Devanagari",serif;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
+
+#scrollProgress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:3px;
+    width:0%;
+    background:linear-gradient(90deg,var(--gold),var(--gold2));
+    z-index:9999;
+}
+
+/* =========================
+   LOADER
+========================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:
+        linear-gradient(rgba(20,3,3,.45),rgba(20,3,3,.85)),
+        url("https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2200&q=90")
+        center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity 1s ease,visibility 1s ease;
+}
+
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-content{
+    text-align:center;
+}
+
+.loader-symbol{
+    width:90px;
+    height:90px;
+    border:1px solid rgba(240,206,120,.55);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    animation:loaderSpin 5s linear infinite;
+}
+
+.loader-symbol span{
+    color:var(--gold2);
+    font-size:38px;
+    animation:counterSpin 5s linear infinite;
+}
+
+.loader-content h2{
+    margin-top:25px;
+    color:var(--gold2);
+    font-size:25px;
+}
+
+.loader-content p{
+    margin-top:8px;
+    letter-spacing:4px;
+    font-size:10px;
+    opacity:.75;
+}
+
+.loader-line{
+    width:170px;
+    height:1px;
+    background:rgba(255,255,255,.2);
+    margin:24px auto 0;
+    overflow:hidden;
+}
+
+.loader-line::after{
+    content:"";
+    display:block;
+    height:100%;
+    width:100%;
+    background:var(--gold);
+    transform:translateX(-100%);
+    animation:loadLine 3.5s ease forwards;
+}
+
+@keyframes loadLine{
+    to{transform:translateX(0);}
+}
+
+@keyframes loaderSpin{
+    to{transform:rotate(360deg);}
+}
+
+@keyframes counterSpin{
+    to{transform:rotate(-360deg);}
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:5000;
+    padding:18px 5%;
+    transition:.45s ease;
+}
+
+.navbar.scrolled{
+    padding:11px 5%;
+    background:rgba(20,4,4,.84);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    text-decoration:none;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-mark{
+    width:46px;
+    height:46px;
+    border:1px solid rgba(240,206,120,.55);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-size:20px;
+}
+
+.logo-text strong{
+    display:block;
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+.logo-text small{
+    font-size:8px;
+    letter-spacing:3px;
+    opacity:.6;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:27px;
+}
+
+.nav-links a{
+    color:rgba(255,250,241,.82);
+    text-decoration:none;
+    font-size:12px;
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    bottom:-7px;
+    left:0;
+    width:0;
+    height:1px;
+    background:var(--gold2);
+    transition:.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:rgba(20,4,4,.45);
+    color:var(--gold2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+
+.icon-btn:hover{
+    transform:translateY(-3px);
+    background:var(--gold);
+    color:#211008;
+}
+
+#menuToggle{
+    display:none;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    background:
+        linear-gradient(90deg,rgba(24,3,3,.88),rgba(24,3,3,.35),rgba(24,3,3,.65)),
+        url("https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2400&q=90")
+        center/cover fixed;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        transparent 60%,
+        rgba(23,7,7,.95)
+    );
+}
+
+.hero-content{
+    position:relative;
+    z-index:3;
+    width:min(1200px,90%);
+    margin:auto;
+    padding-top:100px;
+}
+
+.eyebrow{
+    color:var(--gold2);
+    letter-spacing:5px;
+    font-size:10px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(52px,8vw,110px);
+    line-height:.94;
+    max-width:850px;
+}
+
+.hero h1 span{
+    color:var(--gold2);
+}
+
+.hero-description{
+    max-width:570px;
+    margin-top:28px;
+    line-height:1.8;
+    color:rgba(255,250,241,.72);
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:34px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    padding:15px 23px;
+    border-radius:3px;
+    font-size:11px;
+    letter-spacing:1px;
+    transition:.35s;
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:#211008;
+}
+
+.btn-primary:hover{
+    background:var(--gold2);
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(208,164,76,.22);
+}
+
+.btn-outline{
+    background:rgba(255,255,255,.04);
+    color:white;
+    border:1px solid var(--border);
+    backdrop-filter:blur(10px);
+}
+
+.btn-outline:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold2);
+}
+
+.hero-meta{
+    position:absolute;
+    z-index:4;
+    bottom:35px;
+    left:5%;
+    right:5%;
+    display:flex;
+    justify-content:space-between;
+    color:rgba(255,250,241,.65);
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.fog{
+    position:absolute;
+    width:500px;
+    height:180px;
+    background:rgba(255,255,255,.08);
+    filter:blur(45px);
+    border-radius:50%;
+    z-index:2;
+    animation:fogMove 16s ease-in-out infinite alternate;
+}
+
+.fog.one{
+    left:-150px;
+    bottom:20%;
+}
+
+.fog.two{
+    right:-180px;
+    bottom:35%;
+    animation-delay:3s;
+}
+
+@keyframes fogMove{
+    from{transform:translateX(-30px);}
+    to{transform:translateX(100px);}
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    position:relative;
+    padding:110px 5%;
+}
+
+.section-inner{
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-heading{
+    max-width:700px;
+    margin-bottom:55px;
+}
+
+.section-heading .eyebrow{
+    margin-bottom:12px;
+}
+
+.section-heading h2{
+    font-size:clamp(34px,5vw,62px);
+    line-height:1;
+}
+
+.section-heading p{
+    color:rgba(255,250,241,.6);
+    margin-top:20px;
+    line-height:1.8;
+}
+
+.ornament{
+    text-align:center;
+    color:var(--gold);
+    font-size:18px;
+    margin:20px 0;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(50px) scale(.97);
+    filter:blur(6px);
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.2,.8,.2,1),
+        filter 1s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+    filter:none;
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.story-image{
+    min-height:570px;
+    border-radius:3px;
+    overflow:hidden;
+    background:
+        linear-gradient(180deg,transparent,rgba(20,3,3,.6)),
+        url("https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&w=1400&q=85")
+        center/cover;
+}
+
+.story-copy p{
+    color:rgba(255,250,241,.68);
+    line-height:1.9;
+    margin-top:22px;
+}
+
+.story-points{
+    margin-top:35px;
+    display:grid;
+    gap:15px;
+}
+
+.story-point{
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+}
+
+.story-point i{
+    color:var(--gold2);
+    margin-top:4px;
+}
+
+.story-point strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.story-point span{
+    color:rgba(255,250,241,.5);
+    font-size:13px;
+}
+
+/* =========================
+   MOUNTAIN TO PLATE
+========================= */
+
+.journey{
+    background:
+        linear-gradient(rgba(25,8,8,.78),rgba(25,8,8,.9)),
+        url("https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2200&q=85")
+        center/cover fixed;
+}
+
+.journey-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.journey-card{
+    padding:40px 25px;
+    border-right:1px solid var(--border);
+    transition:.4s;
+}
+
+.journey-card:last-child{
+    border-right:none;
+}
+
+.journey-card:hover{
+    background:rgba(240,206,120,.06);
+    transform:translateY(-8px);
+}
+
+.journey-number{
+    color:var(--gold2);
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.journey-card h3{
+    margin-top:30px;
+    font-size:25px;
+}
+
+.journey-card p{
+    margin-top:12px;
+    color:rgba(255,250,241,.55);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* =========================
+   KHANA EXPERIENCE — CINEMATIC INTERACTIVE
+========================= */
+
+.khana-section{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 30%,rgba(121,29,29,.34),transparent 32%),
+        radial-gradient(circle at 85% 70%,rgba(208,164,76,.12),transparent 35%),
+        linear-gradient(135deg,#100303,#2b0c09 48%,#0b0302);
+}
+
+.khana-section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.055;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px);
+    background-size:45px 45px;
+}
+
+.khana-section::after{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    right:-250px;
+    top:-250px;
+    background:rgba(208,164,76,.06);
+    filter:blur(70px);
+    pointer-events:none;
+}
+
+.khana-grid{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.khana-builder-title{
+    font-family:"Noto Serif Devanagari",serif;
+    font-size:clamp(28px,3vw,42px);
+    line-height:1.15;
+    margin:5px 0 14px;
+}
+
+.khana-builder-copy{
+    color:rgba(255,250,241,.64);
+    line-height:1.85;
+    max-width:540px;
+}
+
+.khana-selector{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:11px;
+    margin-top:28px;
+}
+
+.khana-select-item{
+    border:1px solid rgba(240,206,120,.19);
+    background:rgba(255,255,255,.035);
+    color:var(--white);
+    border-radius:12px;
+    padding:15px;
+    text-align:left;
+    transition:.35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.khana-select-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,transparent,rgba(240,206,120,.08),transparent);
+    transform:translateX(-110%);
+    transition:.5s;
+}
+
+.khana-select-item:hover::before{transform:translateX(110%)}
+
+.khana-select-item:hover,
+.khana-select-item.active{
+    border-color:rgba(240,206,120,.72);
+    background:rgba(208,164,76,.10);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+
+.khana-select-icon{
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.khana-select-name{
+    font-weight:700;
+    font-size:13px;
+}
+
+.khana-select-desc{
+    display:block;
+    margin-top:4px;
+    color:rgba(255,250,241,.45);
+    font-size:10px;
+}
+
+.khana-real-photo{
+    margin-top:30px;
+    overflow:hidden;
+    border:1px solid rgba(240,206,120,.18);
+    background:rgba(255,255,255,.025);
+    border-radius:16px;
+}
+
+.khana-real-photo img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    display:block;
+    transition:transform .8s ease;
+}
+
+.khana-real-photo:hover img{transform:scale(1.04)}
+
+.khana-photo-caption{
+    padding:12px 15px;
+    color:rgba(255,250,241,.45);
+    font-size:10px;
+    line-height:1.6;
+}
+
+.khana-photo-caption strong{color:var(--gold2)}
+
+.khana-stage{
+    min-height:650px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.khana-plate-shadow{
+    position:absolute;
+    width:500px;
+    height:95px;
+    border-radius:50%;
+    background:rgba(0,0,0,.65);
+    filter:blur(27px);
+    bottom:55px;
+}
+
+.khana-plate{
+    width:min(520px,92vw);
+    aspect-ratio:1;
+    position:relative;
+    border-radius:50%;
+    transform:perspective(1000px) rotateX(10deg);
+    background:
+        radial-gradient(circle at 45% 35%,#fffdf8 0 35%,#eee5d8 48%,#c8bba9 53%,#a4937e 57%,#4c4034 60%,#211b17 65%,#0e0b09 69%);
+    box-shadow:
+        0 35px 75px rgba(0,0,0,.62),
+        inset 0 0 35px rgba(255,255,255,.55),
+        0 0 65px rgba(208,164,76,.09);
+    transition:.5s ease;
+}
+
+.khana-plate:hover{transform:perspective(1000px) rotateX(10deg) rotateZ(.7deg) scale(1.012)}
+
+.khana-plate-inner{
+    position:absolute;
+    inset:58px;
+    border-radius:50%;
+    background:radial-gradient(circle,#e8dfd1 0,#d7caba 68%,#b6a58f 100%);
+    box-shadow:inset 0 0 30px rgba(0,0,0,.20);
+}
+
+.khana-plate-empty{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#8d8172;
+    transition:.45s ease;
+    pointer-events:none;
+}
+
+.khana-plate-empty strong{
+    display:block;
+    font-family:"Noto Serif Devanagari",serif;
+    font-size:25px;
+}
+
+.khana-plate-empty span{
+    display:block;
+    margin-top:8px;
+    letter-spacing:2.5px;
+    font-size:9px;
+}
+
+.khana-placed{
+    position:absolute;
+    z-index:8;
+    width:104px;
+    height:79px;
+    border-radius:48% 52% 50% 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:10px;
+    font-weight:800;
+    color:#fff;
+    text-shadow:0 1px 3px rgba(0,0,0,.8);
+    box-shadow:
+        0 12px 18px rgba(0,0,0,.38),
+        inset 0 5px 10px rgba(255,255,255,.22);
+    cursor:pointer;
+    animation:khanaFoodIn .55s cubic-bezier(.17,.67,.25,1.3);
+    transition:.25s;
+}
+
+.khana-placed:hover{filter:brightness(1.08);transform:scale(1.06)}
+
+@keyframes khanaFoodIn{
+    from{opacity:0;transform:translateY(-55px) scale(.15) rotate(-15deg)}
+    to{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+}
+
+.khana-dal{background:radial-gradient(circle at 35% 30%,#f1d477,#9a601b 72%,#58330f)}
+.khana-saag{background:radial-gradient(circle at 35% 30%,#8fac4c,#34531d 72%,#172a0d)}
+.khana-achar{background:radial-gradient(circle at 35% 30%,#df7040,#772816 72%,#3a120a)}
+.khana-bhat{background:radial-gradient(circle at 35% 25%,#fffef5,#ddd5c7 72%,#aaa08e);color:#443a30;text-shadow:none}
+.khana-jhol{background:radial-gradient(circle at 35% 30%,#df8c3e,#77330f 72%,#391509)}
+.khana-masu{background:radial-gradient(circle at 35% 30%,#b64d2d,#5a1a10 72%,#270a06)}
+.khana-papad{background:radial-gradient(circle at 35% 30%,#e2b76d,#815526 72%,#452a13)}
+
+.khana-pos-dal{top:18%;left:16%}
+.khana-pos-saag{top:17%;right:16%}
+.khana-pos-achar{top:42%;left:8%}
+.khana-pos-bhat{top:38%;left:39%;width:128px;height:98px}
+.khana-pos-jhol{top:42%;right:8%}
+.khana-pos-masu{bottom:14%;left:25%}
+.khana-pos-papad{bottom:13%;right:22%}
+
+.khana-plate-info{
+    position:absolute;
+    z-index:12;
+    left:0;
+    right:0;
+    bottom:-5px;
+    text-align:center;
+}
+
+.khana-counter{
+    color:var(--gold2);
+    font-size:10px;
+    letter-spacing:2px;
+    margin-bottom:14px;
+}
+
+.khana-actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.khana-action-btn{
+    border-radius:30px;
+    padding:12px 18px;
+    border:1px solid rgba(240,206,120,.3);
+    background:rgba(20,4,4,.76);
+    color:var(--white);
+    font-size:11px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.khana-action-btn:hover{transform:translateY(-3px);border-color:var(--gold2)}
+
+.khana-action-btn.primary{background:var(--gold);color:#211008;border-color:var(--gold)}
+.khana-action-btn.primary:hover{background:var(--gold2)}
+
+@media(max-width:950px){
+    .khana-grid{grid-template-columns:1fr;gap:30px}
+    .khana-stage{min-height:600px}
+}
+
+@media(max-width:600px){
+    .khana-selector{grid-template-columns:1fr 1fr}
+    .khana-stage{min-height:470px}
+    .khana-plate{width:350px}
+    .khana-plate-inner{inset:40px}
+    .khana-placed{width:69px;height:54px;font-size:8px}
+    .khana-pos-bhat{width:90px;height:68px;left:37%}
+    .khana-plate-shadow{width:300px}
+    .khana-real-photo img{height:190px}
+}
+
+
+/* =========================
+   SMART FINDER
+========================= */
+
+.finder{
+    background:var(--maroon);
+}
+
+.finder-box{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    padding:40px;
+    max-width:850px;
+}
+
+.finder-options{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:25px;
+}
+
+.finder-btn{
+    padding:12px 18px;
+    background:transparent;
+    border:1px solid rgba(255,255,255,.15);
+    color:white;
+    transition:.3s;
+}
+
+.finder-btn:hover,
+.finder-btn.active{
+    background:var(--gold);
+    color:#211008;
+    border-color:var(--gold);
+}
+
+.finder-result{
+    margin-top:30px;
+    padding:22px;
+    border-left:2px solid var(--gold);
+    background:rgba(0,0,0,.15);
+    display:none;
+}
+
+.finder-result.show{
+    display:block;
+    animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(15px)}
+    to{opacity:1;transform:none}
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu-section{
+    background:var(--paper);
+    color:var(--text);
+}
+
+.menu-section .section-heading p{
+    color:var(--muted);
+}
+
+.menu-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:30px;
+}
+
+.filter-btn{
+    border:1px solid rgba(128,111,96,.25);
+    background:transparent;
+    padding:10px 17px;
+    color:var(--text);
+    font-size:11px;
+    transition:.3s;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+    background:var(--maroon);
+    color:var(--gold2);
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.food-card{
+    position:relative;
+    overflow:hidden;
+    min-height:390px;
+    background:#241313;
+    color:white;
+    border-radius:4px;
+    transition:.5s;
+}
+
+.food-card:hover{
+    transform:translateY(-8px);
+}
+
+.food-card img{
+    width:100%;
+    height:100%;
+    min-height:390px;
+    object-fit:cover;
+    transition:.7s;
+}
+
+.food-card:hover img{
+    transform:scale(1.08);
+}
+
+.food-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:25px;
+    background:linear-gradient(transparent 25%,rgba(15,4,4,.92));
+}
+
+.food-category{
+    color:var(--gold2);
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.food-card h3{
+    margin-top:7px;
+    font-size:24px;
+}
+
+.food-description{
+    color:rgba(255,255,255,.62);
+    font-size:12px;
+    line-height:1.6;
+    margin-top:7px;
+}
+
+.food-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:17px;
+}
+
+.price{
+    color:var(--gold2);
+    font-weight:700;
+}
+
+.add-food{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.08);
+    color:white;
+}
+
+.add-food:hover{
+    background:var(--gold);
+    color:#211008;
+}
+
+/* =========================
+   CHEF
+========================= */
+
+.chef-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:70px;
+    align-items:center;
+}
+
+.chef-image{
+    height:560px;
+    background:
+        linear-gradient(180deg,transparent,rgba(20,3,3,.6)),
+        url("https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1400&q=85")
+        center/cover;
+}
+
+.chef-copy p{
+    color:rgba(255,250,241,.65);
+    line-height:1.9;
+    margin-top:20px;
+}
+
+.signature{
+    margin-top:35px;
+    color:var(--gold2);
+    font-family:"Noto Serif Devanagari",serif;
+    font-size:25px;
+}
+
+/* =========================
+   AMBIENCE
+========================= */
+
+.ambience{
+    background:
+        linear-gradient(rgba(20,4,4,.72),rgba(20,4,4,.9)),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
+        center/cover fixed;
+}
+
+.ambience-controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:30px;
+}
+
+.ambience-btn{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:white;
+    padding:13px 19px;
+}
+
+.ambience-btn.active,
+.ambience-btn:hover{
+    background:var(--gold);
+    color:#211008;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-grid{
+    columns:3 250px;
+    column-gap:14px;
+}
+
+.gallery-item{
+    break-inside:avoid;
+    margin-bottom:14px;
+    overflow:hidden;
+    position:relative;
+}
+
+.gallery-item img{
+    width:100%;
+    display:block;
+    transition:.7s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.07);
+}
+
+.gallery-item::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:1px solid transparent;
+    transition:.4s;
+}
+
+.gallery-item:hover::after{
+    border-color:var(--gold);
+}
+
+/* =========================
+   REVIEWS
+========================= */
+
+.reviews{
+    background:var(--maroon);
+}
+
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.review{
+    border:1px solid var(--border);
+    padding:30px;
+    background:rgba(255,255,255,.035);
+}
+
+.stars{
+    color:var(--gold2);
+    letter-spacing:3px;
+}
+
+.review p{
+    margin-top:20px;
+    color:rgba(255,250,241,.7);
+    line-height:1.8;
+    font-size:14px;
+}
+
+.review strong{
+    display:block;
+    margin-top:20px;
+}
+
+/* =========================
+   RESERVATION
+========================= */
+
+.reservation{
+    background:
+        linear-gradient(90deg,rgba(24,3,3,.94),rgba(24,3,3,.72)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2200&q=85")
+        center/cover;
+}
+
+.reservation-box{
+    max-width:850px;
+}
+
+.reservation-box p{
+    color:rgba(255,250,241,.62);
+    line-height:1.8;
+    margin-top:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#0d0303;
+    padding:70px 5% 30px;
+}
+
+.footer-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-brand p{
+    margin-top:15px;
+    color:rgba(255,250,241,.45);
+    line-height:1.8;
+    max-width:400px;
+}
+
+.footer-title{
+    color:var(--gold2);
+    margin-bottom:18px;
+    font-size:13px;
+}
+
+.footer-links{
+    display:grid;
+    gap:10px;
+}
+
+.footer-links a{
+    color:rgba(255,250,241,.55);
+    text-decoration:none;
+    font-size:12px;
+}
+
+.footer-links a:hover{
+    color:var(--gold2);
+}
+
+.socials{
+    display:flex;
+    gap:9px;
+    margin-top:20px;
+}
+
+.socials a{
+    width:38px;
+    height:38px;
+    border:1px solid var(--border);
+    border-radius:50%;
+    color:var(--gold2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.socials a:hover{
+    background:var(--gold);
+    color:#211008;
+}
+
+.footer-bottom{
+    max-width:1200px;
+    margin:50px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:rgba(255,250,241,.3);
+    font-size:10px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* =========================
+   CART
+========================= */
+
+.cart-panel{
+    position:fixed;
+    top:0;
+    right:-430px;
+    width:min(420px,94vw);
+    height:100vh;
+    background:#170707;
+    z-index:8000;
+    transition:.5s cubic-bezier(.77,0,.18,1);
+    border-left:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+}
+
+.cart-panel.open{
+    right:0;
+}
+
+.cart-header{
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.cart-items{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.cart-item{
+    display:flex;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info strong{
+    font-size:13px;
+}
+
+.cart-item-info small{
+    color:var(--gold2);
+    display:block;
+    margin-top:5px;
+}
+
+.qty{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:9px;
+}
+
+.qty button{
+    width:25px;
+    height:25px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.cart-footer{
+    padding:22px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    font-size:17px;
+    margin-bottom:17px;
+}
+
+.cart-empty{
+    color:rgba(255,255,255,.45);
+    text-align:center;
+    padding:50px 15px;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:7000;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+/* =========================
+   MODALS
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    visibility:hidden;
+    transition:.4s;
+}
+
+.modal.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#fff9ed;
+    color:var(--text);
+    padding:35px;
+    border-radius:4px;
+    transform:translateY(25px) scale(.97);
+    transition:.4s;
+}
+
+.modal.show .modal-box{
+    transform:none;
+}
+
+.modal-close{
+    float:right;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:1px solid rgba(33,23,18,.15);
+    background:transparent;
+}
+
+.modal h2{
+    clear:both;
+    font-size:32px;
+    margin-top:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    border:1px solid rgba(33,23,18,.15);
+    padding:13px;
+    background:white;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* =========================
+   PROMO
+========================= */
+
+.promo-box{
+    max-width:520px;
+    text-align:center;
+    background:
+        linear-gradient(rgba(53,11,11,.85),rgba(53,11,11,.96)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+    color:white;
+    border:1px solid var(--border);
+}
+
+.promo-box .modal-close{
+    color:white;
+    border-color:rgba(255,255,255,.2);
+}
+
+.promo-symbol{
+    font-size:35px;
+    color:var(--gold2);
+    margin-top:20px;
+}
+
+.promo-box h2{
+    color:var(--gold2);
+}
+
+.promo-box p{
+    margin-top:14px;
+    color:rgba(255,255,255,.7);
+    line-height:1.8;
+}
+
+/* =========================
+   MUSIC
+========================= */
+
+#musicToggle{
+    position:fixed;
+    right:22px;
+    bottom:78px;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:1px solid rgba(240,206,120,.45);
+    background:rgba(25,5,5,.84);
+    backdrop-filter:blur(12px);
+    color:var(--gold2);
+    z-index:6500;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.35s;
+}
+
+#musicToggle:hover{
+    transform:translateY(-4px) scale(1.05);
+    background:var(--gold);
+    color:#211008;
+}
+
+#musicToggle.playing{
+    box-shadow:0 0 0 7px rgba(240,206,120,.06);
+}
+
+.music-wave{
+    position:absolute;
+    inset:-6px;
+    border:1px solid rgba(240,206,120,.15);
+    border-radius:50%;
+    animation:musicPulse 2s infinite;
+    display:none;
+}
+
+#musicToggle.playing .music-wave{
+    display:block;
+}
+
+@keyframes musicPulse{
+    0%,100%{transform:scale(.95);opacity:.2}
+    50%{transform:scale(1.1);opacity:.8}
+}
+
+/* =========================
+   DAY / NIGHT
+========================= */
+
+#themeToggle{
+    position:fixed;
+    left:22px;
+    bottom:25px;
+    z-index:6500;
+}
+
+/* =========================
+   MOBILE BOTTOM
+========================= */
+
+.mobile-order{
+    display:none;
+    position:fixed;
+    bottom:15px;
+    left:15px;
+    right:15px;
+    z-index:6000;
+    background:var(--gold);
+    color:#211008;
+    padding:15px;
+    text-align:center;
+    font-weight:700;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:82%;
+        max-width:350px;
+        height:100vh;
+        background:#170707;
+        flex-direction:column;
+        justify-content:center;
+        transition:.4s;
+        border-left:1px solid var(--border);
+    }
+
+    .nav-links.open{
+        right:0;
+    }
+
+    .nav-links a{
+        font-size:15px;
+    }
+
+    #menuToggle{
+        display:flex;
+    }
+
+    .story-grid,
+    .khana-grid,
+    .chef-grid{
+        grid-template-columns:1fr;
+    }
+
+    .journey-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .journey-card:nth-child(2){
+        border-right:none;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .review-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:80px 5%;
+    }
+
+    .navbar{
+        padding:13px 4%;
+    }
+
+    .logo-mark{
+        width:40px;
+        height:40px;
+    }
+
+    .logo-text strong{
+        font-size:11px;
+    }
+
+    .logo-text small{
+        font-size:7px;
+    }
+
+    .nav-actions .calendar-btn{
+        display:none;
+    }
+
+    .hero{
+        min-height:92vh;
+        background-attachment:scroll;
+    }
+
+    .hero-content{
+        padding-top:100px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero-description{
+        font-size:13px;
+    }
+
+    .hero-meta{
+        bottom:20px;
+        font-size:8px;
+    }
+
+    .story-image{
+        min-height:420px;
+    }
+
+    .journey-grid{
+        grid-template-columns:1fr;
+    }
+
+    .journey-card{
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .food-card,
+    .food-card img{
+        min-height:370px;
+    }
+
+    .chef-image{
+        height:430px;
+    }
+
+    .finder-box{
+        padding:25px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .mobile-order{
+        display:block;
+    }
+
+    #musicToggle{
+        right:15px;
+        bottom:78px;
+    }
+
+    #themeToggle{
+        left:15px;
+        bottom:78px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        scroll-behavior:auto!important;
+        transition-duration:.01ms!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="scrollProgress"></div>
+
+<!-- =========================
+     LOADER
+========================= -->
+
+<div id="loader">
+    <div class="loader-content">
+        <div class="loader-symbol">
+            <span>ॐ</span>
+        </div>
+        <h2>हिमालयन हेरिटेज</h2>
+        <p>THAKALI RESTAURANT</p>
+        <div class="loader-line"></div>
+    </div>
+</div>
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio id="nepaliMusic" loop preload="auto">
+    <source src="music/nepali-ambient.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" title="Nepali Ambient Music">
+    <i class="fa-solid fa-volume-xmark"></i>
+    <span class="music-wave"></span>
+</button>
+
+<button id="themeToggle" class="icon-btn" title="Day / Night">
+    <i class="fa-solid fa-moon"></i>
+</button>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar" id="navbar">
+
+    <div class="nav-inner">
+
+        <a href="#home" class="logo">
+
+            <div class="logo-mark">
+                <i class="fa-solid fa-mountain-sun"></i>
+            </div>
+
+            <div class="logo-text">
+                <strong>हिमालयन हेरिटेज</strong>
+                <small>THAKALI RESTAURANT</small>
+            </div>
+
+        </a>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#story">Our Story</a>
+            <a href="#heritage">Heritage</a>
+            <a href="#menu">Menu</a>
+            <a href="#chef">Chef</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#reservation">Reservation</a>
+
+        </div>
+
+        <div class="nav-actions">
+
+            <button class="icon-btn calendar-btn"
+                    onclick="openReservation()"
+                    title="Reserve">
+                <i class="fa-regular fa-calendar"></i>
+            </button>
+
+            <button class="icon-btn"
+                    onclick="openCart()"
+                    title="Cart">
+                <i class="fa-solid fa-basket-shopping"></i>
+            </button>
+
+            <button class="icon-btn"
+                    id="menuToggle"
+                    onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero" id="home">
+
+    <div class="fog one"></div>
+    <div class="fog two"></div>
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+            FROM MUSTANG TO YOUR TABLE
+        </div>
+
+        <h1>
+            Taste the
+            <span>Himalayas.</span>
+        </h1>
+
+        <p class="hero-description">
+            An authentic Thakali dining experience inspired by
+            the mountains, culture and timeless flavours of Nepal.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="btn btn-primary"
+                    onclick="document.getElementById('menu').scrollIntoView()">
+                Explore Menu
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button class="btn btn-outline"
+                    onclick="openReservation()">
+                Reserve a Table
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-meta">
+        <span>KATHMANDU · NEPAL</span>
+        <span>EST. WITH HIMALAYAN TRADITION</span>
+    </div>
+
+</header>
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section id="story">
+
+    <div class="section-inner">
+
+        <div class="story-grid">
+
+            <div class="story-image reveal"></div>
+
+            <div class="story-copy reveal">
+
+                <div class="eyebrow">
+                    OUR STORY
+                </div>
+
+                <h2>
+                    A taste of the
+                    mountains.
+                </h2>
+
+                <p>
+                    Thakali cuisine is more than food. It is a
+                    tradition shaped by mountain life, hospitality
+                    and generations of carefully preserved recipes.
+                </p>
+
+                <p>
+                    From Mustang's high valleys to the heart of
+                    Kathmandu, we bring that warmth to every table.
+                </p>
+
+                <div class="story-points">
+
+                    <div class="story-point">
+                        <i class="fa-solid fa-mountain"></i>
+                        <div>
+                            <strong>Mountain Roots</strong>
+                            <span>Inspired by Mustang and the Thakali homeland.</span>
+                        </div>
+                    </div>
+
+                    <div class="story-point">
+                        <i class="fa-solid fa-seedling"></i>
+                        <div>
+                            <strong>Authentic Ingredients</strong>
+                            <span>Simple ingredients transformed with traditional wisdom.</span>
+                        </div>
+                    </div>
+
+                    <div class="story-point">
+                        <i class="fa-solid fa-fire"></i>
+                        <div>
+                            <strong>Traditional Fire</strong>
+                            <span>Slow cooking and bold Himalayan flavours.</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     JOURNEY
+========================= -->
+
+<section class="journey" id="heritage">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                MOUNTAIN TO PLATE
+            </div>
+
+            <h2>
+                The journey behind
+                every bite.
+            </h2>
+
+            <p>
+                Follow the story from the mountains of Mustang
+                to your dining table.
+            </p>
+
+        </div>
+
+        <div class="journey-grid">
+
+            <div class="journey-card reveal">
+                <div class="journey-number">01 / MUSTANG</div>
+                <h3>The Mountains</h3>
+                <p>
+                    A landscape that shaped the character
+                    of Thakali food and hospitality.
+                </p>
+            </div>
+
+            <div class="journey-card reveal">
+                <div class="journey-number">02 / INGREDIENTS</div>
+                <h3>Pure & Simple</h3>
+                <p>
+                    Lentils, greens, grains, spices and
+                    seasonal Himalayan ingredients.
+                </p>
+            </div>
+
+            <div class="journey-card reveal">
+                <div class="journey-number">03 / KITCHEN</div>
+                <h3>Fire & Patience</h3>
+                <p>
+                    Traditional cooking techniques turn
+                    simple ingredients into deep flavours.
+                </p>
+            </div>
+
+            <div class="journey-card reveal">
+                <div class="journey-number">04 / TABLE</div>
+                <h3>Your Experience</h3>
+                <p>
+                    A warm plate, good company and the
+                    spirit of Himalayan hospitality.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     KHANA — INTERACTIVE SIGNATURE EXPERIENCE
+========================= -->
+
+<section class="khana-section" id="signature-experience">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+            <div class="eyebrow">THE SIGNATURE EXPERIENCE</div>
+            <h2>Thakali Khana,<br>the way it belongs.</h2>
+            <p>Start with an empty plate. Choose each traditional element and watch your signature Thakali Khana come together.</p>
+        </div>
+
+        <div class="khana-grid">
+
+            <div class="khana-builder reveal">
+                <div class="eyebrow">BUILD YOUR PLATE</div>
+                <h3 class="khana-builder-title">A little of everything.<br>Exactly where it belongs.</h3>
+                <p class="khana-builder-copy">
+                    Thakali Khana is about balance — rice, dal, greens, pickle, jhol and more, arranged together as one complete dining experience. Click an item to serve it onto the plate.
+                </p>
+
+                <div class="khana-selector">
+
+                    <button class="khana-select-item" data-khana="dal" onclick="toggleKhanaItem('dal')">
+                        <div class="khana-select-icon">🥣</div>
+                        <div class="khana-select-name">Dal</div>
+                        <span class="khana-select-desc">Slow-cooked lentils</span>
+                    </button>
+
+                    <button class="khana-select-item" data-khana="saag" onclick="toggleKhanaItem('saag')">
+                        <div class="khana-select-icon">🥬</div>
+                        <div class="khana-select-name">Saag</div>
+                        <span class="khana-select-desc">Seasonal Himalayan greens</span>
+                    </button>
+
+                    <button class="khana-select-item" data-khana="achar" onclick="toggleKhanaItem('achar')">
+                        <div class="khana-select-icon">🌶️</div>
+                        <div class="khana-select-name">Achar</div>
+                        <span class="khana-select-desc">House-style Nepali pickle</span>
+                    </button>
+
+                    <button class="khana-select-item" data-khana="bhat" onclick="toggleKhanaItem('bhat')">
+                        <div class="khana-select-icon">🍚</div>
+                        <div class="khana-select-name">Bhat</div>
+                        <span class="khana-select-desc">Steamed rice</span>
+                    </button>
+
+                    <button class="khana-select-item" data-khana="jhol" onclick="toggleKhanaItem('jhol')">
+                        <div class="khana-select-icon">🍲</div>
+                        <div class="khana-select-name">Jhol</div>
+                        <span class="khana-select-desc">Warm traditional gravy</span>
+                    </button>
+
+                    <button class="khana-select-item" data-khana="masu" onclick="toggleKhanaItem('masu')">
+                        <div class="khana-select-icon">🍖</div>
+                        <div class="khana-select-name">Masu</div>
+                        <span class="khana-select-desc">Traditional meat curry</span>
+                    </button>
+
+                    <button class="khana-select-item" data-khana="papad" onclick="toggleKhanaItem('papad')">
+                        <div class="khana-select-icon">🫓</div>
+                        <div class="khana-select-name">Papad</div>
+                        <span class="khana-select-desc">Crispy accompaniment</span>
+                    </button>
+
+                </div>
+
+                <div class="khana-real-photo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Traditional_food_of_Nepal.jpg" alt="Traditional Thakali food of Nepal" loading="lazy">
+                    <div class="khana-photo-caption">
+                        <strong>Traditional Thakali Khana</strong> — real food reference. Photo by Trilok Neupane / Wikimedia Commons, CC BY-SA 4.0.
+                    </div>
+                </div>
+            </div>
+
+            <div class="khana-stage reveal">
+
+                <div class="khana-plate-shadow"></div>
+
+                <div class="khana-plate" id="khanaPlate">
+                    <div class="khana-plate-inner"></div>
+
+                    <div class="khana-plate-empty" id="khanaPlateEmpty">
+                        <div>
+                            <strong>Build Your Plate</strong>
+                            <span>SELECT A DISH TO BEGIN</span>
+                        </div>
+                    </div>
+
+                    <div id="khanaPlacedItems"></div>
+                </div>
+
+                <div class="khana-plate-info">
+                    <div class="khana-counter" id="khanaCounter">0 / 7 COMPONENTS SELECTED</div>
+                    <div class="khana-actions">
+                        <button class="khana-action-btn" onclick="resetKhanaPlate()">Reset Plate</button>
+                        <button class="khana-action-btn primary" onclick="addSignatureKhanaToCart()">Add Signature Khana · Rs. 650</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SMART FINDER
+========================= -->
+
+<section class="finder">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                SMART FOOD FINDER
+            </div>
+
+            <h2>
+                What should
+                you eat today?
+            </h2>
+
+            <p>
+                Tell us your mood and let the kitchen guide you.
+            </p>
+
+        </div>
+
+        <div class="finder-box reveal">
+
+            <strong>Choose your preference</strong>
+
+            <div class="finder-options">
+
+                <button class="finder-btn" data-choice="veg">
+                    🌿 Vegetarian
+                </button>
+
+                <button class="finder-btn" data-choice="chicken">
+                    🍗 Chicken
+                </button>
+
+                <button class="finder-btn" data-choice="mutton">
+                    🍖 Mutton
+                </button>
+
+                <button class="finder-btn" data-choice="spicy">
+                    🌶️ Spicy
+                </button>
+
+                <button class="finder-btn" data-choice="traditional">
+                    🏔️ Traditional
+                </button>
+
+            </div>
+
+            <div class="finder-result" id="finderResult"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     MENU
+========================= -->
+
+<section class="menu-section" id="menu">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                OUR MENU
+            </div>
+
+            <h2>
+                Himalayan flavours,
+                thoughtfully served.
+            </h2>
+
+            <p>
+                Explore traditional favourites and modern
+                interpretations from our kitchen.
+            </p>
+
+        </div>
+
+        <div class="menu-filters">
+
+            <button class="filter-btn active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn" data-filter="khana">
+                Khana
+            </button>
+
+            <button class="filter-btn" data-filter="starter">
+                Starters
+            </button>
+
+            <button class="filter-btn" data-filter="momo">
+                Momo
+            </button>
+
+            <button class="filter-btn" data-filter="curry">
+                Curry
+            </button>
+
+            <button class="filter-btn" data-filter="drink">
+                Drinks
+            </button>
+
+        </div>
+
+        <div class="menu-grid" id="menuGrid"></div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     CHEF
+========================= -->
+
+<section id="chef">
+
+    <div class="section-inner">
+
+        <div class="chef-grid">
+
+            <div class="chef-image reveal"></div>
+
+            <div class="chef-copy reveal">
+
+                <div class="eyebrow">
+                    FROM OUR KITCHEN
+                </div>
+
+                <h2>
+                    Tradition is
+                    our secret ingredient.
+                </h2>
+
+                <p>
+                    Our kitchen respects the fundamentals of
+                    Thakali cooking — balance, patience and
+                    carefully selected ingredients.
+                </p>
+
+                <p>
+                    Every plate is prepared to feel familiar,
+                    comforting and unmistakably Nepali.
+                </p>
+
+                <div class="signature">
+                    स्वादिष्ट भोजन,
+                    आत्मीय सत्कार।
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     AMBIENCE
+========================= -->
+
+<section class="ambience">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                CHOOSE YOUR ATMOSPHERE
+            </div>
+
+            <h2>
+                Set the mood.
+            </h2>
+
+            <p>
+                Change the ambience of your digital dining
+                experience.
+            </p>
+
+        </div>
+
+        <div class="ambience-controls reveal">
+
+            <button class="ambience-btn active"
+                    data-mode="classic">
+                ✦ Classic
+            </button>
+
+            <button class="ambience-btn"
+                    data-mode="night">
+                🌙 Himalayan Night
+            </button>
+
+            <button class="ambience-btn"
+                    data-mode="festival">
+                🪕 Festival
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section id="gallery">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                GALLERY
+            </div>
+
+            <h2>
+                A table worth remembering.
+            </h2>
+
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     REVIEWS
+========================= -->
+
+<section class="reviews">
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                FROM OUR GUESTS
+            </div>
+
+            <h2>
+                Shared around the table.
+            </h2>
+
+        </div>
+
+        <div class="review-grid">
+
+            <div class="review reveal">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “The Thakali Khana felt incredibly authentic.
+                    The flavours were balanced and comforting.”
+                </p>
+
+                <strong>— Aarav K.</strong>
+
+            </div>
+
+            <div class="review reveal">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “Beautiful atmosphere, warm hospitality
+                    and some of the best Nepali food I've had.”
+                </p>
+
+                <strong>— Priya S.</strong>
+
+            </div>
+
+            <div class="review reveal">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “The perfect place to introduce someone
+                    to traditional Thakali cuisine.”
+                </p>
+
+                <strong>— Daniel M.</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RESERVATION
+========================= -->
+
+<section class="reservation" id="reservation">
+
+    <div class="section-inner">
+
+        <div class="reservation-box reveal">
+
+            <div class="eyebrow">
+                YOUR TABLE AWAITS
+            </div>
+
+            <h2>
+                Come hungry.
+                Leave with a story.
+            </h2>
+
+            <p>
+                Reserve your table and experience the warmth
+                of Himalayan hospitality.
+            </p>
+
+            <button class="btn btn-primary"
+                    style="margin-top:30px"
+                    onclick="openReservation()">
+                Reserve a Table
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <div class="logo-mark">
+                    <i class="fa-solid fa-mountain-sun"></i>
+                </div>
+
+                <div class="logo-text">
+                    <strong>हिमालयन हेरिटेज</strong>
+                    <small>THAKALI RESTAURANT</small>
+                </div>
+
+            </div>
+
+            <p>
+                Authentic Himalayan flavours, traditional
+                Thakali hospitality and memorable dining.
+            </p>
+
+            <div class="socials">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <div class="footer-title">
+                EXPLORE
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#story">Our Story</a>
+                <a href="#heritage">Heritage</a>
+                <a href="#menu">Menu</a>
+                <a href="#chef">Chef</a>
+                <a href="#gallery">Gallery</a>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <div class="footer-title">
+                VISIT US
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#">Kathmandu, Nepal</a>
+                <a href="#">Daily · 11:00 AM – 10:00 PM</a>
+                <a href="tel:+9779800000000">
+                    +977 98XXXXXXXX
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Himalayan Heritage. All rights reserved.
+        </span>
+
+        <span>
+            Crafted with Himalayan soul.
+        </span>
+
+    </div>
+
+</footer>
+
+<!-- =========================
+     OVERLAY
+========================= -->
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- =========================
+     CART
+========================= -->
+
+<aside class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+        <strong>
+            Your Table Order
+        </strong>
+
+        <button class="icon-btn"
+                onclick="closeCart()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">Rs. 0</strong>
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="sendWhatsAppOrder()">
+            <i class="fa-brands fa-whatsapp"></i>
+            Order via WhatsApp
+        </button>
+
+    </div>
+
+</aside>
+
+<!-- =========================
+     RESERVATION MODAL
+========================= -->
+
+<div class="modal" id="reservationModal">
+
+    <div class="modal-box">
+
+        <button class="modal-close"
+                onclick="closeReservation()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="eyebrow">
+            RESERVATION
+        </div>
+
+        <h2>
+            Reserve your table.
+        </h2>
+
+        <form id="reservationForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input id="guestName"
+                           required
+                           placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input id="guestPhone"
+                           required
+                           placeholder="+977">
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input id="reserveDate"
+                           type="date"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Time</label>
+                    <input id="reserveTime"
+                           type="time"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Guests</label>
+                    <select id="guestCount">
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Occasion</label>
+                    <select id="occasion">
+                        <option>Casual Dining</option>
+                        <option>Birthday</option>
+                        <option>Anniversary</option>
+                        <option>Family Gathering</option>
+                        <option>Business Dinner</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Special Request</label>
+                    <textarea id="specialRequest"
+                              placeholder="Any special request?"></textarea>
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary"
+                    type="submit"
+                    style="margin-top:20px;width:100%">
+                <i class="fa-brands fa-whatsapp"></i>
+                Request Reservation
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     PROMO POPUP
+========================= -->
+
+<div class="modal" id="promoModal">
+
+    <div class="modal-box promo-box">
+
+        <button class="modal-close"
+                onclick="closePromo()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="promo-symbol">
+            🪕
+        </div>
+
+        <div class="eyebrow">
+            NAMASTE & WELCOME
+        </div>
+
+        <h2>
+            Himalayan Dining Experience
+        </h2>
+
+        <p>
+            Step into a world of traditional Thakali flavours,
+            mountain hospitality and Nepali warmth.
+        </p>
+
+        <button class="btn btn-primary"
+                style="margin-top:25px"
+                onclick="closePromo();document.getElementById('menu').scrollIntoView()">
+            Explore the Menu
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     MOBILE ORDER
+========================= -->
+
+<div class="mobile-order"
+     onclick="openCart()">
+    <i class="fa-solid fa-basket-shopping"></i>
+    View Your Order · <span id="mobileCartCount">0</span>
+</div>
+
+<script>
+
+/* =========================
+   MENU DATA
+========================= */
+
+const menuData = [
+
+    {
+        id:1,
+        name:"Thakali Khana Set",
+        category:"khana",
+        price:650,
+        description:"Traditional dal, bhat, saag, achar and jhol.",
+        image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:2,
+        name:"Mutton Thakali Set",
+        category:"khana",
+        price:850,
+        description:"Classic Thakali set with rich mutton curry.",
+        image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:3,
+        name:"Chicken Thakali Set",
+        category:"khana",
+        price:750,
+        description:"Tender chicken curry with traditional sides.",
+        image:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:4,
+        name:"Buff Sukuti",
+        category:"starter",
+        price:480,
+        description:"Smoky, spicy and deeply flavoured Himalayan sukuti.",
+        image:"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:5,
+        name:"Thakali Momo",
+        category:"momo",
+        price:320,
+        description:"Hand-folded momo with aromatic Himalayan seasoning.",
+        image:"https://images.unsplash.com/photo-1626804475297-41608ea09aeb?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:6,
+        name:"Gundruk Jhol",
+        category:"curry",
+        price:260,
+        description:"Traditional fermented leafy greens in a warm jhol.",
+        image:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:7,
+        name:"Aloo Tama",
+        category:"curry",
+        price:280,
+        description:"Potato and bamboo shoot Nepali classic.",
+        image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:8,
+        name:"Dhido Set",
+        category:"khana",
+        price:620,
+        description:"Traditional millet dhido served with Himalayan sides.",
+        image:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:9,
+        name:"Masala Chiya",
+        category:"drink",
+        price:120,
+        description:"Warm Nepali milk tea with aromatic spices.",
+        image:"https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=1000&q=85"
+    },
+
+    {
+        id:10,
+        name:"Homemade Achar Trio",
+        category:"starter",
+        price:220,
+        description:"A colourful trio of homemade Nepali pickles.",
+        image:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=85"
+    }
+
+];
+
+let cart = JSON.parse(localStorage.getItem("thakaliCart")) || [];
+
+/* =========================
+   RENDER MENU
+========================= */
+
+function renderMenu(filter="all"){
+
+    const grid = document.getElementById("menuGrid");
+
+    const items =
+        filter === "all"
+        ? menuData
+        : menuData.filter(item=>item.category===filter);
+
+    grid.innerHTML = items.map(item => `
+
+        <article class="food-card reveal visible">
+
+            <img src="${item.image}"
+                 alt="${item.name}"
+                 loading="lazy">
+
+            <div class="food-overlay">
+
+                <div class="food-category">
+                    ${item.category}
+                </div>
+
+                <h3>${item.name}</h3>
+
+                <div class="food-description">
+                    ${item.description}
+                </div>
+
+                <div class="food-bottom">
+
+                    <div class="price">
+                        Rs. ${item.price}
+                    </div>
+
+                    <button class="add-food"
+                            onclick="addToCart(${item.id})"
+                            title="Add to order">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `).join("");
+}
+
+renderMenu();
+
+/* =========================
+   FILTER
+========================= */
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        document
+            .querySelectorAll(".filter-btn")
+            .forEach(b=>b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        renderMenu(btn.dataset.filter);
+
+    });
+
+});
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(id){
+
+    const item = menuData.find(x=>x.id===id);
+
+    if(!item) return;
+
+    const existing =
+        cart.find(x=>x.id===id);
+
+    if(existing){
+        existing.qty++;
+    }else{
+        cart.push({
+            ...item,
+            qty:1
+        });
+    }
+
+    saveCart();
+    updateCart();
+
+    openCart();
+}
+
+function changeQty(id,change){
+
+    const item = cart.find(x=>x.id===id);
+
+    if(!item) return;
+
+    item.qty += change;
+
+    if(item.qty <= 0){
+        cart = cart.filter(x=>x.id!==id);
+    }
+
+    saveCart();
+    updateCart();
+}
+
+function removeItem(id){
+
+    cart = cart.filter(x=>x.id!==id);
+
+    saveCart();
+    updateCart();
+}
+
+function saveCart(){
+
+    localStorage.setItem(
+        "thakaliCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+function updateCart(){
+
+    const container =
+        document.getElementById("cartItems");
+
+    const count =
+        cart.reduce((sum,item)=>sum+item.qty,0);
+
+    document.getElementById("mobileCartCount")
+        .textContent=count;
+
+    if(!cart.length){
+
+        container.innerHTML=`
+            <div class="cart-empty">
+                <i class="fa-solid fa-basket-shopping"
+                   style="font-size:35px;color:#d0a44c"></i>
+                <p style="margin-top:15px">
+                    Your table is waiting.
+                </p>
+            </div>
+        `;
+
+        document.getElementById("cartTotal")
+            .textContent="Rs. 0";
+
+        return;
+    }
+
+    container.innerHTML = cart.map(item=>`
+
+        <div class="cart-item">
+
+            <div class="cart-item-info">
+
+                <strong>${item.name}</strong>
+
+                <small>
+                    Rs. ${item.price} × ${item.qty}
+                </small>
+
+                <div class="qty">
+
+                    <button onclick="changeQty(${item.id},-1)">
+                        −
+                    </button>
+
+                    <span>${item.qty}</span>
+
+                    <button onclick="changeQty(${item.id},1)">
+                        +
+                    </button>
+
+                    <button onclick="removeItem(${item.id})"
+                            style="margin-left:5px">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+    const total =
+        cart.reduce(
+            (sum,item)=>sum+(item.price*item.qty),
+            0
+        );
+
+    document.getElementById("cartTotal")
+        .textContent="Rs. "+total;
+
+}
+
+updateCart();
+
+/* =========================
+   CART OPEN/CLOSE
+========================= */
+
+function openCart(){
+
+    document
+        .getElementById("cartPanel")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+function closeCart(){
+
+    document
+        .getElementById("cartPanel")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+/* =========================
+   WHATSAPP ORDER
+========================= */
+
+function sendWhatsAppOrder(){
+
+    if(!cart.length){
+        alert("Please add something to your order first.");
+        return;
+    }
+
+    const total =
+        cart.reduce(
+            (sum,item)=>sum+(item.price*item.qty),
+            0
+        );
+
+    let message =
+`🙏 NAMASTE — HIMALAYAN HERITAGE
+THAKALI RESTAURANT
+
+🍛 MY ORDER
+
+`;
+
+    cart.forEach(item=>{
+
+        message +=
+`• ${item.name} × ${item.qty} — Rs. ${item.price*item.qty}
+`;
+
+    });
+
+    message +=
+`
+━━━━━━━━━━━━━━
+TOTAL: Rs. ${total}
+━━━━━━━━━━━━━━
+
+🪑 Dining: Dine-in / Takeaway
+
+Please confirm my order.
+Dhanyabad 🙏`;
+
+    const url =
+        "https://wa.me/9779800000000?text="
+        +encodeURIComponent(message);
+
+    window.open(url,"_blank");
+
+}
+
+/* =========================
+   RESERVATION
+========================= */
+
+function openReservation(){
+
+    document
+        .getElementById("reservationModal")
+        .classList.add("show");
+
+}
+
+function closeReservation(){
+
+    document
+        .getElementById("reservationModal")
+        .classList.remove("show");
+
+}
+
+document
+    .getElementById("reservationForm")
+    .addEventListener("submit",function(e){
+
+        e.preventDefault();
+
+        const name =
+            document.getElementById("guestName").value;
+
+        const phone =
+            document.getElementById("guestPhone").value;
+
+        const date =
+            document.getElementById("reserveDate").value;
+
+        const time =
+            document.getElementById("reserveTime").value;
+
+        const guests =
+            document.getElementById("guestCount").value;
+
+        const occasion =
+            document.getElementById("occasion").value;
+
+        const request =
+            document.getElementById("specialRequest").value;
+
+        const message =
+`🙏 NAMASTE — HIMALAYAN HERITAGE
+
+📅 TABLE RESERVATION REQUEST
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📆 Date: ${date}
+⏰ Time: ${time}
+👥 Guests: ${guests}
+🎉 Occasion: ${occasion}
+
+📝 Special Request:
+${request || "None"}
+
+Please confirm my reservation.
+Dhanyabad 🙏`;
+
+        window.open(
+            "https://wa.me/9779800000000?text="
+            +encodeURIComponent(message),
+            "_blank"
+        );
+
+    });
+
+/* =========================
+   PROMO
+========================= */
+
+function closePromo(){
+
+    document
+        .getElementById("promoModal")
+        .classList.remove("show");
+
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("open");
+
+}
+
+document.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+        document
+            .getElementById("navLinks")
+            .classList.remove("open");
+    });
+
+});
+
+/* =========================
+   SCROLL NAVBAR
+========================= */
+
+window.addEventListener("scroll",()=>{
+
+    const nav =
+        document.getElementById("navbar");
+
+    if(window.scrollY>60){
+        nav.classList.add("scrolled");
+    }else{
+        nav.classList.remove("scrolled");
+    }
+
+    const scrollTop =
+        document.documentElement.scrollTop;
+
+    const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+    const percentage =
+        (scrollTop/height)*100;
+
+    document.getElementById("scrollProgress")
+        .style.width=percentage+"%";
+
+});
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+const observer =
+new IntersectionObserver(
+(entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+        }
+    });
+},
+{
+    threshold:.12
+});
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(el=>observer.observe(el));
+
+/* =========================
+   SMART FOOD FINDER
+========================= */
+
+const recommendations = {
+
+    veg:{
+        title:"🌿 Aloo Tama + Thakali Khana",
+        text:"For a comforting vegetarian experience, try Aloo Tama with our classic Thakali Khana."
+    },
+
+    chicken:{
+        title:"🍗 Chicken Thakali Set",
+        text:"Tender chicken curry, dal, bhat, saag and achar — a balanced Himalayan plate."
+    },
+
+    mutton:{
+        title:"🍖 Mutton Thakali Set",
+        text:"Go rich and traditional with our slow-cooked mutton Thakali Set."
+    },
+
+    spicy:{
+        title:"🌶️ Buff Sukuti + Achar Trio",
+        text:"Smoky sukuti and spicy homemade achar for guests who love bold flavours."
+    },
+
+    traditional:{
+        title:"🏔️ Signature Thakali Khana",
+        text:"If you want the true experience, start with our traditional Thakali Khana Set."
+    }
+
+};
+
+document
+    .querySelectorAll(".finder-btn")
+    .forEach(btn=>{
+
+        btn.addEventListener("click",()=>{
+
+            document
+                .querySelectorAll(".finder-btn")
+                .forEach(b=>b.classList.remove("active"));
+
+            btn.classList.add("active");
+
+            const data =
+                recommendations[btn.dataset.choice];
+
+            const result =
+                document.getElementById("finderResult");
+
+            result.innerHTML=`
+                <strong>${data.title}</strong>
+                <p style="margin-top:8px;color:rgba(255,250,241,.65)">
+                    ${data.text}
+                </p>
+            `;
+
+            result.classList.add("show");
+
+        });
+
+    });
+
+/* =========================
+   AMBIENCE
+========================= */
+
+document
+    .querySelectorAll(".ambience-btn")
+    .forEach(btn=>{
+
+        btn.addEventListener("click",()=>{
+
+            document
+                .querySelectorAll(".ambience-btn")
+                .forEach(b=>b.classList.remove("active"));
+
+            btn.classList.add("active");
+
+            document.body.classList.remove(
+                "day-mode",
+                "night-mode"
+            );
+
+            if(btn.dataset.mode==="night"){
+                document.body.classList.add("night-mode");
+            }
+
+            if(btn.dataset.mode==="festival"){
+                document.body.classList.add("day-mode");
+            }
+
+        });
+
+    });
+
+/* =========================
+   MUSIC SYSTEM
+   MADAL + BANSURI + SARANGI
+========================= */
+
+const nepaliMusic =
+    document.getElementById("nepaliMusic");
+
+const musicToggle =
+    document.getElementById("musicToggle");
+
+let musicPlaying=false;
+
+nepaliMusic.volume=.28;
+
+function startNepaliMusic(){
+
+    if(musicPlaying) return;
+
+    nepaliMusic.volume=.28;
+
+    nepaliMusic.play()
+    .then(()=>{
+
+        musicPlaying=true;
+
+        musicToggle.classList.add("playing");
+
+        musicToggle.innerHTML=`
+            <i class="fa-solid fa-volume-high"></i>
+            <span class="music-wave"></span>
+        `;
+
+    })
+    .catch(()=>{});
+
+}
+
+document.addEventListener(
+    "click",
+    startNepaliMusic,
+    {once:true}
+);
+
+musicToggle.addEventListener("click",(event)=>{
+
+    event.stopPropagation();
+
+    if(nepaliMusic.paused){
+
+        nepaliMusic.volume=.28;
+
+        nepaliMusic.play();
+
+        musicPlaying=true;
+
+        musicToggle.classList.add("playing");
+
+        musicToggle.innerHTML=`
+            <i class="fa-solid fa-volume-high"></i>
+            <span class="music-wave"></span>
+        `;
+
+    }else{
+
+        nepaliMusic.pause();
+
+        musicPlaying=false;
+
+        musicToggle.classList.remove("playing");
+
+        musicToggle.innerHTML=`
+            <i class="fa-solid fa-volume-xmark"></i>
+        `;
+
+    }
+
+});
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+document
+    .getElementById("themeToggle")
+    .addEventListener("click",()=>{
+
+        document.body.classList.toggle("night-mode");
+
+        const icon =
+            document.querySelector("#themeToggle i");
+
+        if(document.body.classList.contains("night-mode")){
+            icon.className="fa-solid fa-sun";
+        }else{
+            icon.className="fa-solid fa-moon";
+        }
+
+    });
+
+/* =========================
+   CLOSE ALL
+========================= */
+
+function closeAll(){
+
+    closeCart();
+    closeReservation();
+    closePromo();
+
+}
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+        closeAll();
+    }
+
+});
+
+/* =========================
+   LOADING FLOW
+========================= */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("loader")
+            .classList.add("hide");
+
+    },3500);
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("promoModal")
+            .classList.add("show");
+
+    },4300);
+
+});
+
+
+/* =========================
+   INTERACTIVE SIGNATURE KHANA
+========================= */
+
+const khanaFoods = {
+    dal:{name:"DAL",className:"khana-dal",position:"khana-pos-dal"},
+    saag:{name:"SAAG",className:"khana-saag",position:"khana-pos-saag"},
+    achar:{name:"ACHAR",className:"khana-achar",position:"khana-pos-achar"},
+    bhat:{name:"BHAT",className:"khana-bhat",position:"khana-pos-bhat"},
+    jhol:{name:"JHOL",className:"khana-jhol",position:"khana-pos-jhol"},
+    masu:{name:"MASU",className:"khana-masu",position:"khana-pos-masu"},
+    papad:{name:"PAPAD",className:"khana-papad",position:"khana-pos-papad"}
+};
+
+const selectedKhanaItems = new Set();
+
+function toggleKhanaItem(food){
+    if(selectedKhanaItems.has(food)) selectedKhanaItems.delete(food);
+    else selectedKhanaItems.add(food);
+    renderKhanaPlate();
+}
+
+function renderKhanaPlate(){
+    const container=document.getElementById("khanaPlacedItems");
+    const empty=document.getElementById("khanaPlateEmpty");
+    const counter=document.getElementById("khanaCounter");
+    if(!container || !empty || !counter) return;
+
+    container.innerHTML="";
+
+    selectedKhanaItems.forEach(food=>{
+        const data=khanaFoods[food];
+        const item=document.createElement("button");
+        item.type="button";
+        item.className=`khana-placed ${data.className} ${data.position}`;
+        item.textContent=data.name;
+        item.title=`Click to remove ${data.name}`;
+        item.setAttribute("aria-label",`Remove ${data.name}`);
+        item.onclick=()=>toggleKhanaItem(food);
+        container.appendChild(item);
+    });
+
+    counter.textContent=`${selectedKhanaItems.size} / 7 COMPONENTS SELECTED`;
+    empty.style.opacity=selectedKhanaItems.size ? "0" : "1";
+
+    document.querySelectorAll(".khana-select-item").forEach(button=>{
+        button.classList.toggle("active",selectedKhanaItems.has(button.dataset.khana));
+    });
+}
+
+function resetKhanaPlate(){
+    selectedKhanaItems.clear();
+    renderKhanaPlate();
+}
+
+function addSignatureKhanaToCart(){
+    if(!selectedKhanaItems.size){
+        alert("Please select at least one dish first.");
+        return;
+    }
+
+    const selected=[...selectedKhanaItems].map(key=>khanaFoods[key].name).join(", ");
+
+    if(typeof cart !== "undefined" && Array.isArray(cart) && typeof saveCart === "function" && typeof updateCart === "function"){
+        const existing=cart.find(item=>item.id==="signature-khana");
+        if(existing){
+            existing.qty=(existing.qty||1)+1;
+            existing.components=selected;
+        }else{
+            cart.push({
+                id:"signature-khana",
+                name:"Signature Thakali Khana",
+                price:650,
+                qty:1,
+                components:selected
+            });
+        }
+        saveCart();
+        updateCart();
+        if(typeof openCart === "function") openCart();
+        return;
+    }
+
+    alert(`Signature Thakali Khana selected!\n\n${selected}\n\nPrice: Rs. 650`);
+}
+
+renderKhanaPlate();
+
+</script>
+
+</body>
+</html>
