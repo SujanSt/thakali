@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Himalayan Heritage | Thakali Restaurant</title>
+<title>Melung Thakali | Thakali Restaurant</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,94 +86,6 @@ button{
 }
 
 /* =========================
-   LOADER
-========================= */
-
-#loader{
-    position:fixed;
-    inset:0;
-    z-index:99999;
-    background:
-        linear-gradient(rgba(20,3,3,.45),rgba(20,3,3,.85)),
-        url("https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2200&q=90")
-        center/cover;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:opacity 1s ease,visibility 1s ease;
-}
-
-#loader.hide{
-    opacity:0;
-    visibility:hidden;
-}
-
-.loader-content{
-    text-align:center;
-}
-
-.loader-symbol{
-    width:90px;
-    height:90px;
-    border:1px solid rgba(240,206,120,.55);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:auto;
-    animation:loaderSpin 5s linear infinite;
-}
-
-.loader-symbol span{
-    color:var(--gold2);
-    font-size:38px;
-    animation:counterSpin 5s linear infinite;
-}
-
-.loader-content h2{
-    margin-top:25px;
-    color:var(--gold2);
-    font-size:25px;
-}
-
-.loader-content p{
-    margin-top:8px;
-    letter-spacing:4px;
-    font-size:10px;
-    opacity:.75;
-}
-
-.loader-line{
-    width:170px;
-    height:1px;
-    background:rgba(255,255,255,.2);
-    margin:24px auto 0;
-    overflow:hidden;
-}
-
-.loader-line::after{
-    content:"";
-    display:block;
-    height:100%;
-    width:100%;
-    background:var(--gold);
-    transform:translateX(-100%);
-    animation:loadLine 3.5s ease forwards;
-}
-
-@keyframes loadLine{
-    to{transform:translateX(0);}
-}
-
-@keyframes loaderSpin{
-    to{transform:rotate(360deg);}
-}
-
-@keyframes counterSpin{
-    to{transform:rotate(-360deg);}
-}
-
-/* =========================
    NAVBAR
 ========================= */
 
@@ -210,16 +122,10 @@ button{
     gap:12px;
 }
 
-.logo-mark{
-    width:46px;
-    height:46px;
-    border:1px solid rgba(240,206,120,.55);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--gold2);
-    font-size:20px;
+.logo-img {
+    height: 46px;
+    width: auto;
+    object-fit: contain;
 }
 
 .logo-text strong{
@@ -1703,9 +1609,8 @@ footer{
         padding:13px 4%;
     }
 
-    .logo-mark{
-        width:40px;
-        height:40px;
+    .logo-img{
+        height: 38px;
     }
 
     .logo-text strong{
@@ -1827,21 +1732,6 @@ footer{
 <div id="scrollProgress"></div>
 
 <!-- =========================
-     LOADER
-========================= -->
-
-<div id="loader">
-    <div class="loader-content">
-        <div class="loader-symbol">
-            <span>ॐ</span>
-        </div>
-        <h2>हिमालयन हेरिटेज</h2>
-        <p>THAKALI RESTAURANT</p>
-        <div class="loader-line"></div>
-    </div>
-</div>
-
-<!-- =========================
      AUDIO
 ========================= -->
 
@@ -1868,12 +1758,10 @@ footer{
 
         <a href="#home" class="logo">
 
-            <div class="logo-mark">
-                <i class="fa-solid fa-mountain-sun"></i>
-            </div>
+            <img src="image/logo.png" alt="Melung Thakali Logo" class="logo-img">
 
             <div class="logo-text">
-                <strong>हिमालयन हेरिटेज</strong>
+                <strong>Melung Thakali</strong>
                 <small>THAKALI RESTAURANT</small>
             </div>
 
@@ -2600,12 +2488,10 @@ footer{
 
             <div class="logo">
 
-                <div class="logo-mark">
-                    <i class="fa-solid fa-mountain-sun"></i>
-                </div>
+                <img src="image/logo.png" alt="Melung Thakali Logo" class="logo-img">
 
                 <div class="logo-text">
-                    <strong>हिमालयन हेरिटेज</strong>
+                    <strong>Melung Thakali</strong>
                     <small>THAKALI RESTAURANT</small>
                 </div>
 
@@ -2675,7 +2561,7 @@ footer{
     <div class="footer-bottom">
 
         <span>
-            © 2026 Himalayan Heritage. All rights reserved.
+            © 2026 Melung Thakali. All rights reserved.
         </span>
 
         <span>
@@ -3242,7 +3128,7 @@ function sendWhatsAppOrder(){
         );
 
     let message =
-`🙏 NAMASTE — HIMALAYAN HERITAGE
+`🙏 NAMASTE — MELUNG THAKALI
 THAKALI RESTAURANT
 
 🍛 MY ORDER
@@ -3324,7 +3210,7 @@ document
             document.getElementById("specialRequest").value;
 
         const message =
-`🙏 NAMASTE — HIMALAYAN HERITAGE
+`🙏 NAMASTE — MELUNG THAKALI
 
 📅 TABLE RESERVATION REQUEST
 
@@ -3662,18 +3548,10 @@ window.addEventListener("load",()=>{
     setTimeout(()=>{
 
         document
-            .getElementById("loader")
-            .classList.add("hide");
-
-    },3500);
-
-    setTimeout(()=>{
-
-        document
             .getElementById("promoModal")
             .classList.add("show");
 
-    },4300);
+    },1500);
 
 });
 
